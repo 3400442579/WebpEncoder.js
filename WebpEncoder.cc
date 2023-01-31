@@ -123,6 +123,7 @@ extern "C"
     EMSCRIPTEN_KEEPALIVE
     uint8_t *WebpEncoder_encode(struct WebpEncoder *encoder)
     {
+        WebPAnimEncoderAdd(encoder->enc, NULL,  encoder->frame_timestamp, NULL);
         if (!WebPAnimEncoderAssemble(encoder->enc, &encoder->webp_data))
         {
             fprintf(stderr, "%s\n", WebPAnimEncoderGetError(encoder->enc));

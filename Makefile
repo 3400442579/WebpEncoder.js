@@ -4,7 +4,7 @@ default: WebpEncoder.js
 
 WebpEncoder.js WebpEncoder.js.mem: WebpEncoder.cc libwebp
 	emcc \
-		-O3 -s WASM=1 -s ENVIRONMENT=web \
+		-O3 -s WASM=1 -s ENVIRONMENT=web,worker -s ALLOW_MEMORY_GROWTH\
 		-I libwebp \
 		-s EXPORTED_FUNCTIONS='["_WebpEncoder_encode", "_WebpEncoder_alloc", "_WebpEncoder_size", "_WebpEncoder_add", "_WebpEncoder_free", "_WebpEncoder_config","_malloc","_free"]' \
 		WebpEncoder.cc \
